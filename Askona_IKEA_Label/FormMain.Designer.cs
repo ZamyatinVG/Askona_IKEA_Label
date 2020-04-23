@@ -33,14 +33,13 @@
             this.CatalogTV = new System.Windows.Forms.TreeView();
             this.TreeIcon = new System.Windows.Forms.ImageList(this.components);
             this.FileLV = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ListIcon = new System.Windows.Forms.ImageList(this.components);
             this.MainMenu = new System.Windows.Forms.MenuStrip();
             this.miFile = new System.Windows.Forms.ToolStripMenuItem();
             this.miDesign = new System.Windows.Forms.ToolStripMenuItem();
-            this.LL = new combit.ListLabel15.ListLabel(this.components);
             this.YearLabel = new System.Windows.Forms.Label();
             this.YearTB = new System.Windows.Forms.TextBox();
             this.WeekLabel = new System.Windows.Forms.Label();
@@ -79,6 +78,7 @@
             this.columnHeader2,
             this.columnHeader3});
             this.FileLV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.FileLV.HideSelection = false;
             this.FileLV.Location = new System.Drawing.Point(318, 30);
             this.FileLV.MultiSelect = false;
             this.FileLV.Name = "FileLV";
@@ -135,16 +135,7 @@
             this.miDesign.Size = new System.Drawing.Size(164, 22);
             this.miDesign.Text = "Дизайнер";
             this.miDesign.Visible = false;
-            this.miDesign.Click += new System.EventHandler(this.miDesign_Click);
-            // 
-            // LL
-            // 
-            this.LL.DebugLogFilePath = "C:\\Documents and Settings\\zamyatinvg\\Application Data\\COMBIT.LOG";
-            this.LL.LicensingInfo = "EuKjDg";
-            this.LL.MaxRTFVersion = 65280;
-            this.LL.PreviewControl = null;
-            this.LL.Unit = combit.ListLabel15.LlUnits.Millimeter_1_100;
-            this.LL.DefineVariables += new combit.ListLabel15.DefineVariablesHandler(this.LL_DefineVariables);
+            this.miDesign.Click += new System.EventHandler(this.MiDesign_Click);
             // 
             // YearLabel
             // 
@@ -246,7 +237,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Печать этикеток IKEA";
             this.Load += new System.EventHandler(this.FormMain_Load);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.MainMenu.ResumeLayout(false);
             this.MainMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -265,7 +255,7 @@
         private System.Windows.Forms.ToolStripMenuItem miFile;
         private System.Windows.Forms.ImageList ListIcon;
         private System.Windows.Forms.ImageList TreeIcon;
-        private combit.ListLabel15.ListLabel LL;
+        
         private System.Windows.Forms.ToolStripMenuItem miDesign;
         private System.Windows.Forms.Label YearLabel;
         private System.Windows.Forms.TextBox YearTB;
