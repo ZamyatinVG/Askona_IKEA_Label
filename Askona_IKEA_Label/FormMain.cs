@@ -28,6 +28,7 @@ namespace Askona_IKEA_Label
             catch (Exception ex)
             {
                 MessageBox.Show("Не найдены библиотеки для печати (combit.ListLabel)!\n\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
             }
 
             YearTB.Text = DateTime.Now.Year.ToString().Substring(2, 2);

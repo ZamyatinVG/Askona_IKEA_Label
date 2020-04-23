@@ -53,6 +53,8 @@
             // 
             // CatalogTV
             // 
+            this.CatalogTV.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.CatalogTV.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CatalogTV.ImageIndex = 0;
             this.CatalogTV.ImageList = this.TreeIcon;
@@ -73,6 +75,9 @@
             // 
             // FileLV
             // 
+            this.FileLV.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.FileLV.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -177,6 +182,7 @@
             // 
             // LabelTypeCB
             // 
+            this.LabelTypeCB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LabelTypeCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.LabelTypeCB.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.LabelTypeCB.FormattingEnabled = true;
@@ -187,6 +193,7 @@
             // 
             // PrintButton
             // 
+            this.PrintButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.PrintButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.PrintButton.Location = new System.Drawing.Point(668, 436);
             this.PrintButton.Name = "PrintButton";
