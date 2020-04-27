@@ -6,13 +6,15 @@ namespace Askona_IKEA_Label
 {
     static class Program
     {
+        private static Mutex m_instance;
+        private const string m_appName = "Askona IKEA Label";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
-            _ = new Mutex(true, "Askona IKEA Label", out bool tryCreateNewApp);
+            m_instance = new Mutex(true, m_appName, out bool tryCreateNewApp);
             if (tryCreateNewApp)
             {
                 Application.EnableVisualStyles();
