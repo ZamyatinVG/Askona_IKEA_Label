@@ -11,7 +11,6 @@ namespace Askona_IKEA_Label
     {
         private ListLabel LL;
         public FormMain() => InitializeComponent();
-
         private void FormMain_Load(object sender, EventArgs e)
         {
             try
@@ -30,7 +29,6 @@ namespace Askona_IKEA_Label
                 MessageBox.Show("Не найдены библиотеки для печати (combit.ListLabel)!\n\n" + ex.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
-
             YearTB.Text = DateTime.Now.Year.ToString().Substring(2, 2);
             WeekTB.Text = WeekNumber(DateTime.Now).ToString();
             LabelTypeCB.Items.Add("NLRJ (85 на 125 мм)");
@@ -59,7 +57,6 @@ namespace Askona_IKEA_Label
             LabelTypeCB.SelectedIndex = 0;
             DriveTreeInit(); //инициализация дерева
         }
-
         //инициализация окна древовидного списка дисковых устройств
         private void DriveTreeInit()
         {
@@ -82,7 +79,6 @@ namespace Askona_IKEA_Label
                 CatalogTV.EndUpdate();
             }
         }
-
         //получение списка каталогов
         private void GetDirs(TreeNode node)
         {
@@ -105,7 +101,6 @@ namespace Askona_IKEA_Label
                 node.Nodes.Add(dir);
             }
         }
-
         //обработчик события раскрытия узла дерева
         private void CatalogTV_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
@@ -114,7 +109,6 @@ namespace Askona_IKEA_Label
                 GetDirs(node);
             CatalogTV.EndUpdate();
         }
-
         private void CatalogTV_AfterSelect(object sender, TreeViewEventArgs e)
         {
             TreeNode selectedNode = e.Node; //ссылка на выделенный узел дерева
@@ -156,7 +150,6 @@ namespace Askona_IKEA_Label
                 FileLV.Items.Add(lvi); //добавление в список
             }
         }
-
         private string SelectLabelType()
         {
             string labelType = "";
@@ -234,7 +227,13 @@ namespace Askona_IKEA_Label
             }
             return labelType;
         }
-
+        private string SelectTemplate(string labelType)
+        {
+            if (labelType == "NLB" || labelType == "NLE" || labelType == "NLACD" || labelType == "LCI_прочие")
+                return $"\\Шаблоны\\{labelType}";
+            else
+                return "\\Шаблоны\\ИКЕА_общая.lbl";
+        }
         private void PrintButton_Click(object sender, EventArgs e)
         {
             try
@@ -243,19 +242,7 @@ namespace Askona_IKEA_Label
                 if (FileLV.SelectedItems[0].Tag.ToString().IndexOf(".jpg") > 0)
                 {
                     string labelType = SelectLabelType();
-                    if (labelType == "NLB")
-                        LL.Print(0, LlProject.Label, Application.StartupPath + "\\Шаблоны\\NLB.lbl", false, LlPrintMode.Export, LlBoxType.EmptyWait, this.Handle, "Печать", true, "");
-                    else
-                        if (labelType == "NLE")
-                            LL.Print(0, LlProject.Label, Application.StartupPath + "\\Шаблоны\\NLE.lbl", false, LlPrintMode.Export, LlBoxType.EmptyWait, this.Handle, "Печать", true, "");
-                        else
-                            if (labelType == "NLACD")
-                                LL.Print(0, LlProject.Label, Application.StartupPath + "\\Шаблоны\\NLACD.lbl", false, LlPrintMode.Export, LlBoxType.EmptyWait, this.Handle, "Печать", true, "");
-                            else
-                                if (labelType == "LCI_прочие")
-                                    LL.Print(0, LlProject.Label, Application.StartupPath + "\\Шаблоны\\LCI_прочие.lbl", false, LlPrintMode.Export, LlBoxType.EmptyWait, this.Handle, "Печать", true, "");
-                                else
-                                    LL.Print(0, LlProject.Label, Application.StartupPath + "\\Шаблоны\\ИКЕА_общая.lbl", false, LlPrintMode.Export, LlBoxType.EmptyWait, this.Handle, "Печать", true, "");
+                    LL.Print(0, LlProject.Label, Application.StartupPath + SelectTemplate(labelType), false, LlPrintMode.Export, LlBoxType.EmptyWait, this.Handle, "Печать", true, "");
                 }
             }
             catch (LL_User_Aborted_Exception)
@@ -265,7 +252,6 @@ namespace Askona_IKEA_Label
                 MessageBox.Show("Ошибка печати.\n\n" + LLException.Message, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void MiDesign_Click(object sender, EventArgs e)
         {
             try
@@ -274,19 +260,7 @@ namespace Askona_IKEA_Label
                 if (FileLV.SelectedItems[0].Tag.ToString().IndexOf(".jpg") > 0)
                 {
                     string labelType = SelectLabelType();
-                    if (labelType == "NLB")
-                        LL.Design(0, this.Handle, "Открытие шаблона", LlProject.Label | LlProject.FileAlsoNew, Application.StartupPath + "\\Шаблоны\\NLB.lbl", true);
-                    else
-                        if (labelType == "NLE")
-                            LL.Design(0, this.Handle, "Открытие шаблона", LlProject.Label | LlProject.FileAlsoNew, Application.StartupPath + "\\Шаблоны\\NLE.lbl", true);
-                        else
-                            if (labelType == "NLACD")
-                                LL.Design(0, this.Handle, "Открытие шаблона", LlProject.Label | LlProject.FileAlsoNew, Application.StartupPath + "\\Шаблоны\\NLACD.lbl", true);
-                            else
-                                if (labelType == "LCI_прочие")
-                                    LL.Design(0, this.Handle, "Открытие шаблона", LlProject.Label | LlProject.FileAlsoNew, Application.StartupPath + "\\Шаблоны\\LCI_прочие.lbl", true);
-                                else
-                                    LL.Design(0, this.Handle, "Открытие шаблона", LlProject.Label | LlProject.FileAlsoNew, Application.StartupPath + "\\Шаблоны\\ИКЕА_общая.lbl", true);
+                    LL.Design(0, this.Handle, "Открытие шаблона", LlProject.Label | LlProject.FileAlsoNew, Application.StartupPath + SelectTemplate(labelType), true);
                 }
             }
             catch (LL_User_Aborted_Exception)
@@ -296,7 +270,6 @@ namespace Askona_IKEA_Label
                 MessageBox.Show("Ошибка дизайнера.\n\n" + LLException.Message, "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
         private void LL_DefineVariables()
         {
             LL.Variables.Add("LABELTYPE", SelectLabelType());
@@ -305,7 +278,6 @@ namespace Askona_IKEA_Label
             LL.Variables.Add("WEEK", Convert.ToInt32(WeekTB.Text));
             LL.Variables.Add("CURDATE", DateDTP.Value.ToShortDateString());
         }
-
         public int WeekNumber(DateTime fromDate)
         {
             // Получаем 1 января указанного нами года
